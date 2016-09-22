@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酷跑游戏</title>
+	<style>
+		body,html{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+		}
+		canvas{
+			background: url(images/bg.jpg) repeat-x;
+			background-size: cover;
+		}
+		.life,.score{
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			left: 100px;
+			top: 20px;
+			line-height: 30px;
+			background: #000;
+			color: #fff;
+			padding-left: 20px;
+			border-radius: 20px;
+		}
+		.score{
+			top: 70px;
+		}
+		span{
+			color: red;
+			padding-left: 20px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+	</style>
+	<script src="js/hitPix.js"></script>
+	<script src="js/game.js"></script>
+	<script>
+		window.onload=function(){
+			// 获取画布
+			var canvas=document.querySelector("canvas");
+
+			// 获取2d对象
+			var cobj=canvas.getContext("2d");
+
+			// 画布大小跟随浏览器窗口变化而变化
+			window.resize=function(){
+				canvas.width=document.documentElement.clientWidth;
+				canvas.height=document.documentElement.clientHeight;
+			}
+
+			// 起初先执行一次
+			window.resize();
+
+			// 获取人物不同状态下的图片
+			var runImg=document.querySelectorAll(".runImg");
+
+			// 这里获取跳的动作时一定不能加下标！
+			var jumpImg=document.querySelectorAll(".jumpImg");
+
+			// 获取障碍物
+			var hinderImg=document.querySelectorAll(".hinderImg");
+			var life=document.querySelector(".life span");
+			
+
+			// 游戏进行
+			var gameObj=new game(canvas,cobj,runImg,jumpImg,hinderImg);
+			gameObj.play();
+		}
+	</script>
+</head>
+<body>
+	<canvas>您的浏览器不支持canvas标签</canvas>
+	<img src="images/person/run1.png" alt="" class="runImg" hidden>
+	<img src="images/person/run2.png" alt="" class="runImg" hidden>
+	<img src="images/person/run3.png" alt="" class="runImg" hidden>
+	<img src="images/person/run4.png" alt="" class="runImg" hidden>
+	<img src="images/person/run5.png" alt="" class="runImg" hidden>
+	<img src="images/person/run6.png" alt="" class="runImg" hidden>
+	<img src="images/person/run7.png" alt="" class="runImg" hidden>
+	<img src="images/person/run8.png" alt="" class="runImg" hidden>
+	<img src="images/person/jump4.png" alt="" class="jumpImg" hidden>
+
+	<img src="images/hinder/6.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/7.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/8.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/9.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/10.png" alt="" class="hinderImg" hidden> 
+	<img src="images/hinder/11.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/12.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/13.png" alt="" class="hinderImg" hidden>
+	<img src="images/hinder/14.png" alt="" class="hinderImg" hidden>
+
+	<div class="life">生命值<span>3</span></div>
+	<div class="score">分数<span>0</span></div>
+	
+</body>
+</html>
